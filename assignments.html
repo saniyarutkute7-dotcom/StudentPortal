@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="manifest.json">
+
+    <title>Student Study Portal - Assignments</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+        }
+
+        /* Navbar */
+        nav {
+            background-color: #243b55;
+            padding: 18px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .nav-links a:hover {
+            color: #bcd4f6;
+        }
+
+        /* Heading */
+        .page-header {
+            text-align: center;
+            padding: 40px 20px 25px;
+        }
+
+        .page-header h1 {
+            color: #243b55;
+            font-size: 35px;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            color: #666;
+        }
+
+        /* Form */
+        .assignment-form {
+            width: 90%;
+            max-width: 700px;
+            margin: 0 auto 35px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .assignment-form h2 {
+            color: #243b55;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-size: 15px;
+        }
+
+        textarea {
+            height: 90px;
+            resize: vertical;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 7px;
+            background-color: #243b55;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #162b40;
+        }
+
+        /* Assignment list */
+        .assignment-list {
+            width: 90%;
+            max-width: 900px;
+            margin: auto;
+            padding-bottom: 50px;
+        }
+
+        .assignment-list h2 {
+            text-align: center;
+            color: #243b55;
+            margin-bottom: 20px;
+        }
+
+        .assignment-card {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .assignment-card h3 {
+            color: #243b55;
+            margin-bottom: 10px;
+        }
+
+        .assignment-card p {
+            margin: 7px 0;
+            color: #555;
+        }
+
+        .delete-btn {
+            background-color: #c0392b;
+            width: auto;
+            padding: 8px 15px;
+            margin-top: 10px;
+        }
+
+        .delete-btn:hover {
+            background-color: #922b21;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #243b55;
+            color: white;
+            text-align: center;
+            padding: 18px;
+        }
+
+        @media (max-width: 700px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .assignment-form,
+            .assignment-list {
+                width: 92%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">Student Study Portal</div>
+
+        <div class="nav-links">
+            <a href="home.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="login.html">Logout</a>
+        </div>
+    </nav>
+
+
+    <!-- Page Heading -->
+    <section class="page-header">
+        <h1>Assignments</h1>
+        <p>Add and manage your assignments</p>
+    </section>
+
+
+    <!-- Assignment Form -->
+    <section class="assignment-form">
+
+        <h2>Add Assignment</h2>
+
+        <form onsubmit="addAssignment(event)">
+
+            <label for="subject">Subject</label>
+            <input
+                type="text"
+                id="subject"
+                placeholder="Enter subject"
+                required
+            >
+
+            <label for="topic">Assignment Topic</label>
+            <input
+                type="text"
+                id="topic"
+                placeholder="Enter assignment topic"
+                required
+            >
+
+            <label for="date">Submission Date</label>
+            <input
+                type="date"
+                id="date"
+                required
+            >
+
+            <label for="status">Status</label>
+            <select id="status">
+                <option value="Pending">Pending</option>
+                <option value="Submitted">Submitted</option>
+            </select>
+
+            <label for="description">Description</label>
+            <textarea
+                id="description"
+                placeholder="Enter assignment details"
+            ></textarea>
+
+            <button type="submit">Add Assignment</button>
+
+        </form>
+
+    </section>
+
+
+    <!-- Saved Assignments -->
+    <section class="assignment-list">
+
+        <h2>My Assignments</h2>
+
+        <div id="assignmentContainer"></div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Student Study Portal</p>
+    </footer>
+
+
+    <script>
+
+        // Load saved assignments
+        let assignments =
+            JSON.parse(localStorage.getItem("assignments")) || [];
+
+        displayAssignments();
+
+
+        // Add assignment
+        function addAssignment(event) {
+
+            event.preventDefault();
+
+            const subject =
+                document.getElementById("subject").value;
+
+            const topic =
+                document.getElementById("topic").value;
+
+            const date =
+                document.getElementById("date").value;
+
+            const status =
+                document.getElementById("status").value;
+
+            const description =
+                document.getElementById("description").value;
+
+
+            const assignment = {
+                subject: subject,
+                topic: topic,
+                date: date,
+                status: status,
+                description: description
+            };
+
+
+            assignments.push(assignment);
+
+
+            // Store data in browser
+            localStorage.setItem(
+                "assignments",
+                JSON.stringify(assignments)
+            );
+
+
+            // Clear form
+            document.querySelector("form").reset();
+
+
+            // Show assignments
+            displayAssignments();
+        }
+
+
+        // Display assignments
+        function displayAssignments() {
+
+            const container =
+                document.getElementById("assignmentContainer");
+
+            container.innerHTML = "";
+
+
+            if (assignments.length === 0) {
+
+                container.innerHTML =
+                    "<p style='text-align:center;color:#777;'>No assignments added yet.</p>";
+
+                return;
+            }
+
+
+            assignments.forEach(function(assignment, index) {
+
+                const card =
+                    document.createElement("div");
+
+                card.className = "assignment-card";
+
+
+                card.innerHTML = `
+                    <h3>${assignment.topic}</h3>
+
+                    <p>
+                        <strong>Subject:</strong>
+                        ${assignment.subject}
+                    </p>
+
+                    <p>
+                        <strong>Submission Date:</strong>
+                        ${assignment.date}
+                    </p>
+
+                    <p>
+                        <strong>Status:</strong>
+                        ${assignment.status}
+                    </p>
+
+                    <p>
+                        <strong>Description:</strong>
+                        ${assignment.description || "No description"}
+                    </p>
+
+                    <button
+                        class="delete-btn"
+                        onclick="deleteAssignment(${index})">
+                        Delete
+                    </button>
+                `;
+
+
+                container.appendChild(card);
+            });
+        }
+
+
+        // Delete assignment
+        function deleteAssignment(index) {
+
+            assignments.splice(index, 1);
+
+            localStorage.setItem(
+                "assignments",
+                JSON.stringify(assignments)
+            );
+
+            displayAssignments();
+        }
+
+    </script>
+
+</body>
+</html>
