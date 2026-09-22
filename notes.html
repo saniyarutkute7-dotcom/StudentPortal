@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="manifest.json">
+
+    <title>Student Study Portal - Notes</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+        }
+
+
+        /* NAVBAR */
+
+        nav {
+            background-color: #243b55;
+            padding: 18px 30px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .nav-links a:hover {
+            color: #bcd4f6;
+        }
+
+
+        /* PAGE HEADER */
+
+        .page-header {
+            text-align: center;
+            padding: 40px 20px 25px;
+        }
+
+        .page-header h1 {
+            color: #243b55;
+            font-size: 35px;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            color: #666;
+        }
+
+
+        /* UPLOAD BOX */
+
+        .upload-box {
+
+            width: 90%;
+            max-width: 700px;
+
+            margin: 0 auto 35px;
+
+            background-color: white;
+
+            padding: 30px;
+
+            border-radius: 15px;
+
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .upload-box h2 {
+            color: #243b55;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"],
+        input[type="file"] {
+
+            width: 100%;
+
+            padding: 12px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 7px;
+
+            font-size: 15px;
+        }
+
+        .upload-btn {
+
+            width: 100%;
+
+            margin-top: 20px;
+
+            padding: 12px;
+
+            border: none;
+
+            border-radius: 7px;
+
+            background-color: #243b55;
+
+            color: white;
+
+            font-size: 16px;
+
+            cursor: pointer;
+        }
+
+        .upload-btn:hover {
+            background-color: #162b40;
+        }
+
+
+        /* SUBJECT SECTION */
+
+        .subjects-section {
+
+            width: 90%;
+            max-width: 900px;
+
+            margin: auto;
+
+            padding-bottom: 50px;
+        }
+
+        .subjects-section h2 {
+
+            text-align: center;
+
+            color: #243b55;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* SUBJECT CARD */
+
+        .subject-card {
+
+            background-color: white;
+
+            margin-bottom: 20px;
+
+            padding: 20px;
+
+            border-radius: 12px;
+
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .subject-title {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            color: #243b55;
+
+            font-size: 21px;
+
+            font-weight: bold;
+
+            margin-bottom: 15px;
+        }
+
+        .subject-title button {
+
+            border: none;
+
+            background-color: #243b55;
+
+            color: white;
+
+            padding: 8px 14px;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+        }
+
+
+        /* FILE CARD */
+
+        .file-card {
+
+            display: none;
+
+            background-color: #f4f6f9;
+
+            padding: 15px;
+
+            margin-top: 10px;
+
+            border-radius: 8px;
+        }
+
+        .file-card.show {
+            display: block;
+        }
+
+        .file-name {
+
+            font-weight: bold;
+
+            margin-bottom: 8px;
+
+            word-break: break-word;
+        }
+
+        .file-date {
+
+            color: #777;
+
+            font-size: 13px;
+
+            margin-bottom: 12px;
+        }
+
+        .file-buttons {
+
+            display: flex;
+
+            gap: 8px;
+
+            flex-wrap: wrap;
+        }
+
+        .view-btn,
+        .download-btn,
+        .delete-btn {
+
+            border: none;
+
+            padding: 8px 12px;
+
+            border-radius: 6px;
+
+            color: white;
+
+            cursor: pointer;
+        }
+
+        .view-btn {
+            background-color: #2874a6;
+        }
+
+        .download-btn {
+            background-color: #27ae60;
+        }
+
+        .delete-btn {
+            background-color: #c0392b;
+        }
+
+
+        /* NO FILE */
+
+        .no-files {
+
+            text-align: center;
+
+            color: #777;
+
+            padding: 20px;
+        }
+
+
+        /* FOOTER */
+
+        footer {
+
+            background-color: #243b55;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 18px;
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            nav {
+
+                flex-direction: column;
+
+                gap: 15px;
+            }
+
+            .nav-links {
+
+                gap: 15px;
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+            }
+
+            .subject-title {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 10px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <nav>
+
+        <div class="logo">
+            Student Study Portal
+        </div>
+
+        <div class="nav-links">
+
+            <a href="home.html">Home</a>
+
+            <a href="dashboard.html">Dashboard</a>
+
+            <a href="#" onclick="logout()">Logout</a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- HEADER -->
+
+    <section class="page-header">
+
+        <h1>📚 Notes</h1>
+
+        <p>
+            Upload and manage your study materials subject-wise
+        </p>
+
+    </section>
+
+
+    <!-- UPLOAD -->
+
+    <section class="upload-box">
+
+        <h2>Upload Study Material</h2>
+
+
+        <label for="subject">
+
+            Subject
+
+        </label>
+
+        <input
+            type="text"
+            id="subject"
+            placeholder="Example: Data Structures"
+        >
+
+
+        <label for="files">
+
+            Select Files
+
+        </label>
+
+        <input
+            type="file"
+            id="files"
+            multiple
+        >
+
+
+        <button
+            class="upload-btn"
+            onclick="uploadFiles()"
+        >
+
+            Upload Files
+
+        </button>
+
+    </section>
+
+
+    <!-- UPLOADED FILES -->
+
+    <section class="subjects-section">
+
+        <h2>
+            Uploaded Study Materials
+        </h2>
+
+        <div id="subjectsContainer">
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 Student Study Portal
+        </p>
+
+    </footer>
+
+
+
+<script>
+const student = JSON.parse(localStorage.getItem("studentData"));
+const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
+if (!student || !isLoggedIn) {
+    window.location.href = "login.html";
+}
+
+function logout() {
+    localStorage.removeItem("isLoggedIn");
+    window.location.href = "login.html";
+}
+
+
+    /* =====================================
+       OPEN DATABASE
+    ===================================== */
+
+
+    let database;
+
+
+    const request = indexedDB.open(
+        "StudentPortalNotes",
+        1
+    );
+
+
+    request.onupgradeneeded = function(event) {
+
+        database = event.target.result;
+
+
+        if (
+            !database.objectStoreNames.contains("files")
+        ) {
+
+            database.createObjectStore(
+                "files",
+                {
+                    keyPath: "id",
+                    autoIncrement: true
+                }
+            );
+
+        }
+
+    };
+
+
+    request.onsuccess = function(event) {
+
+        database = event.target.result;
+
+        displayFiles();
+
+    };
+
+
+    request.onerror = function() {
+
+        alert(
+            "Unable to open file storage."
+        );
+
+    };
+
+
+    /* =====================================
+       UPLOAD FILES
+    ===================================== */
+
+
+    function uploadFiles() {
+
+
+        const subject =
+            document.getElementById(
+                "subject"
+            ).value.trim();
+
+
+        const files =
+            document.getElementById(
+                "files"
+            ).files;
+
+
+        if (subject === "") {
+
+            alert(
+                "Please enter the subject."
+            );
+
+            return;
+        }
+
+
+        if (files.length === 0) {
+
+            alert(
+                "Please select at least one file."
+            );
+
+            return;
+        }
+
+
+        const transaction =
+            database.transaction(
+                ["files"],
+                "readwrite"
+            );
+
+
+        const store =
+            transaction.objectStore(
+                "files"
+            );
+
+
+        for (
+            let i = 0;
+            i < files.length;
+            i++
+        ) {
+
+
+            const file = files[i];
+
+
+            store.add({
+
+                subject: subject,
+
+                name: file.name,
+
+                type: file.type,
+
+                file: file,
+
+                uploadedAt:
+                    new Date().toLocaleString()
+
+            });
+
+        }
+
+
+        transaction.oncomplete = function() {
+
+
+            document.getElementById(
+                "subject"
+            ).value = "";
+
+
+            document.getElementById(
+                "files"
+            ).value = "";
+
+
+            alert(
+                "Files uploaded successfully!"
+            );
+
+
+            displayFiles();
+
+        };
+
+    }
+
+
+    /* =====================================
+       DISPLAY FILES
+    ===================================== */
+
+
+    function displayFiles() {
+
+
+        if (!database) {
+            return;
+        }
+
+
+        const container =
+            document.getElementById(
+                "subjectsContainer"
+            );
+
+
+        const transaction =
+            database.transaction(
+                ["files"],
+                "readonly"
+            );
+
+
+        const store =
+            transaction.objectStore(
+                "files"
+            );
+
+
+        const request =
+            store.getAll();
+
+
+        request.onsuccess = function() {
+
+
+            const files =
+                request.result;
+
+
+            container.innerHTML = "";
+
+
+            if (files.length === 0) {
+
+                container.innerHTML = `
+
+                    <div class="no-files">
+
+                        No study materials uploaded yet.
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            /* Get unique subjects */
+
+            const subjects = [];
+
+
+            files.forEach(function(file) {
+
+                if (
+                    !subjects.includes(
+                        file.subject
+                    )
+                ) {
+
+                    subjects.push(
+                        file.subject
+                    );
+
+                }
+
+            });
+
+
+            /* Create subject cards */
+
+            subjects.forEach(function(subject) {
+
+
+                const subjectFiles =
+                    files.filter(
+                        function(file) {
+
+                            return (
+                                file.subject
+                                ===
+                                subject
+                            );
+
+                        }
+                    );
+
+
+                const subjectCard =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                subjectCard.className =
+                    "subject-card";
+
+
+                const subjectId =
+                    "subject_" +
+                    Math.random()
+                    .toString(36)
+                    .substring(2, 10);
+
+
+                subjectCard.innerHTML = `
+
+                    <div class="subject-title">
+
+                        <span>
+                            📚 ${subject}
+                        </span>
+
+                        <button
+                            onclick="toggleSubject('${subjectId}')"
+                        >
+                            View Files
+                        </button>
+
+                    </div>
+
+                    <div
+                        id="${subjectId}"
+                    >
+                    </div>
+
+                `;
+
+
+                container.appendChild(
+                    subjectCard
+                );
+
+
+                const fileContainer =
+                    document.getElementById(
+                        subjectId
+                    );
+
+
+                /* Add files */
+
+                subjectFiles.forEach(
+                    function(file) {
+
+
+                        const fileCard =
+                            document.createElement(
+                                "div"
+                            );
+
+
+                        fileCard.className =
+                            "file-card";
+
+
+                        fileCard.innerHTML = `
+
+                            <div class="file-name">
+
+                                📄 ${file.name}
+
+                            </div>
+
+
+                            <div class="file-date">
+
+                                Uploaded:
+                                ${file.uploadedAt}
+
+                            </div>
+
+
+                            <div class="file-buttons">
+
+
+                                <button
+                                    class="view-btn"
+                                    onclick="viewFile(${file.id})"
+                                >
+
+                                    👁 View
+
+                                </button>
+
+
+                                <button
+                                    class="download-btn"
+                                    onclick="downloadFile(${file.id})"
+                                >
+
+                                    ⬇ Download
+
+                                </button>
+
+
+                                <button
+                                    class="delete-btn"
+                                    onclick="deleteFile(${file.id})"
+                                >
+
+                                    🗑 Delete
+
+                                </button>
+
+
+                            </div>
+
+                        `;
+
+
+                        fileContainer.appendChild(
+                            fileCard
+                        );
+
+                    }
+                );
+
+            });
+
+        };
+
+    }
+
+
+    /* =====================================
+       SHOW / HIDE SUBJECT FILES
+    ===================================== */
+
+
+    function toggleSubject(subjectId) {
+
+
+        const container =
+            document.getElementById(
+                subjectId
+            );
+
+
+        const files =
+            container.querySelectorAll(
+                ".file-card"
+            );
+
+
+        files.forEach(function(file) {
+
+            file.classList.toggle(
+                "show"
+            );
+
+        });
+
+    }
+
+
+    /* =====================================
+       VIEW FILE
+    ===================================== */
+
+
+    function viewFile(id) {
+
+
+        const transaction =
+            database.transaction(
+                ["files"],
+                "readonly"
+            );
+
+
+        const store =
+            transaction.objectStore(
+                "files"
+            );
+
+
+        const request =
+            store.get(id);
+
+
+        request.onsuccess = function() {
+
+
+            const data =
+                request.result;
+
+
+            const url =
+                URL.createObjectURL(
+                    data.file
+                );
+
+
+            window.open(
+                url,
+                "_blank"
+            );
+
+        };
+
+    }
+
+
+    /* =====================================
+       DOWNLOAD FILE
+    ===================================== */
+
+
+    function downloadFile(id) {
+
+
+        const transaction =
+            database.transaction(
+                ["files"],
+                "readonly"
+            );
+
+
+        const store =
+            transaction.objectStore(
+                "files"
+            );
+
+
+        const request =
+            store.get(id);
+
+
+        request.onsuccess = function() {
+
+
+            const data =
+                request.result;
+
+
+            const url =
+                URL.createObjectURL(
+                    data.file
+                );
+
+
+            const link =
+                document.createElement(
+                    "a"
+                );
+
+
+            link.href = url;
+
+            link.download =
+                data.name;
+
+
+            document.body.appendChild(
+                link
+            );
+
+
+            link.click();
+
+
+            document.body.removeChild(
+                link
+            );
+
+
+            URL.revokeObjectURL(
+                url
+            );
+
+        };
+
+    }
+
+
+    /* =====================================
+       DELETE FILE
+    ===================================== */
+
+
+    function deleteFile(id) {
+
+
+        if (
+            !confirm(
+                "Do you want to delete this file?"
+            )
+        ) {
+
+            return;
+
+        }
+
+
+        const transaction =
+            database.transaction(
+                ["files"],
+                "readwrite"
+            );
+
+
+        const store =
+            transaction.objectStore(
+                "files"
+            );
+
+
+        store.delete(id);
+
+
+        transaction.oncomplete =
+            function() {
+
+                displayFiles();
+
+            };
+
+    }
+
+
+</script>
+
+
+</body>
+
+</html>

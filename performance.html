@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="manifest.json">
+
+<title>Student Study Portal - Performance</title>
+
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+
+body{
+    background:#f4f6f9;
+    color:#333;
+}
+
+
+/* NAVBAR */
+
+nav{
+    background:#243b55;
+    padding:18px 30px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    color:white;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.nav-links{
+    display:flex;
+    gap:25px;
+}
+
+.nav-links a{
+    color:white;
+    text-decoration:none;
+    font-size:15px;
+}
+
+.nav-links a:hover{
+    color:#bcd4f6;
+}
+
+
+/* HEADER */
+
+.page-header{
+    text-align:center;
+    padding:40px 20px 25px;
+}
+
+.page-header h1{
+    color:#243b55;
+    font-size:35px;
+    margin-bottom:10px;
+}
+
+.page-header p{
+    color:#666;
+}
+
+
+/* STUDENT */
+
+.student-name{
+    text-align:center;
+    color:#243b55;
+    margin-bottom:25px;
+    font-size:20px;
+}
+
+
+/* MAIN */
+
+.performance-section{
+    width:90%;
+    max-width:1000px;
+    margin:auto;
+    padding-bottom:50px;
+}
+
+
+/* CARDS */
+
+.performance-cards{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:30px;
+}
+
+
+.performance-card{
+
+    width:210px;
+
+    background:white;
+
+    padding:25px 20px;
+
+    text-align:center;
+
+    border-radius:15px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+
+}
+
+
+.performance-card .icon{
+
+    font-size:35px;
+
+    margin-bottom:10px;
+
+}
+
+
+.performance-card h3{
+
+    color:#243b55;
+
+    margin-bottom:10px;
+
+}
+
+
+.performance-value{
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    color:#2874a6;
+
+}
+
+
+.performance-card p{
+
+    color:#666;
+
+    margin-top:8px;
+
+    font-size:14px;
+
+}
+
+
+/* OVERALL */
+
+.overall-box{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:15px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+
+    margin-bottom:30px;
+
+    text-align:center;
+
+}
+
+
+.overall-box h2{
+
+    color:#243b55;
+
+    margin-bottom:20px;
+
+}
+
+
+.overall-percentage{
+
+    font-size:45px;
+
+    font-weight:bold;
+
+    color:#243b55;
+
+    margin-bottom:15px;
+
+}
+
+
+.progress{
+
+    width:100%;
+
+    height:18px;
+
+    background:#e1e5ea;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+}
+
+
+.progress-bar{
+
+    height:100%;
+
+    width:0%;
+
+    background:#2874a6;
+
+    border-radius:20px;
+
+    transition:width 0.5s;
+
+}
+
+
+/* DETAILS */
+
+.details-box{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+
+}
+
+
+.details-box h2{
+
+    color:#243b55;
+
+    margin-bottom:20px;
+
+}
+
+
+.detail{
+
+    background:#eef4fb;
+
+    padding:15px;
+
+    border-radius:8px;
+
+    margin-bottom:10px;
+
+}
+
+
+.detail strong{
+
+    color:#243b55;
+
+}
+
+
+/* FOOTER */
+
+footer{
+
+    background:#243b55;
+
+    color:white;
+
+    text-align:center;
+
+    padding:18px;
+
+}
+
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    nav{
+
+        flex-direction:column;
+
+        gap:15px;
+
+    }
+
+
+    .nav-links{
+
+        gap:15px;
+
+        flex-wrap:wrap;
+
+        justify-content:center;
+
+    }
+
+
+    .performance-card{
+
+        width:90%;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav>
+
+    <div class="logo">
+        Student Study Portal
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="home.html">
+            Home
+        </a>
+
+
+        <a href="dashboard.html">
+            Dashboard
+        </a>
+
+
+        <a href="profile.html">
+            Profile
+        </a>
+
+
+        <a href="#" onclick="logout()">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- HEADER -->
+
+<section class="page-header">
+
+    <h1>📊 Overall Performance</h1>
+
+    <p>
+        View your academic and study performance
+    </p>
+
+</section>
+
+
+<div class="student-name">
+
+    Student:
+    <span id="studentName">
+        Not Available
+    </span>
+
+</div>
+
+
+<section class="performance-section">
+
+
+    <!-- PERFORMANCE CARDS -->
+
+    <div class="performance-cards">
+
+
+        <!-- MARKS -->
+
+        <div class="performance-card">
+
+            <div class="icon">
+                📝
+            </div>
+
+            <h3>
+                Marks
+            </h3>
+
+            <div
+                class="performance-value"
+                id="marksPercentage"
+            >
+                0%
+            </div>
+
+            <p>
+                Average marks
+            </p>
+
+        </div>
+
+
+        <!-- ATTENDANCE -->
+
+        <div class="performance-card">
+
+            <div class="icon">
+                📅
+            </div>
+
+            <h3>
+                Attendance
+            </h3>
+
+            <div
+                class="performance-value"
+                id="attendancePercentage"
+            >
+                0%
+            </div>
+
+            <p>
+                Overall attendance
+            </p>
+
+        </div>
+
+
+        <!-- PROJECTS -->
+
+        <div class="performance-card">
+
+            <div class="icon">
+                💻
+            </div>
+
+            <h3>
+                Projects
+            </h3>
+
+            <div
+                class="performance-value"
+                id="projectCount"
+            >
+                0
+            </div>
+
+            <p>
+                Project files
+            </p>
+
+        </div>
+
+
+        <!-- STUDY -->
+
+        <div class="performance-card">
+
+            <div class="icon">
+                📚
+            </div>
+
+            <h3>
+                Study Schedule
+            </h3>
+
+            <div
+                class="performance-value"
+                id="studyCount"
+            >
+                0
+            </div>
+
+            <p>
+                Study sessions
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- SGPA / CGPA -->
+
+    <div class="overall-box">
+
+        <h2>
+            🎓 Academic Performance
+        </h2>
+
+
+        <div class="performance-cards">
+
+
+            <div class="performance-card">
+
+                <h3>
+                    SGPA
+                </h3>
+
+                <div
+                    class="performance-value"
+                    id="sgpa"
+                >
+                    -
+                </div>
+
+            </div>
+
+
+            <div class="performance-card">
+
+                <h3>
+                    CGPA
+                </h3>
+
+                <div
+                    class="performance-value"
+                    id="cgpa"
+                >
+                    -
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- OVERALL PERFORMANCE -->
+
+    <div class="overall-box">
+
+        <h2>
+            📈 Overall Performance
+        </h2>
+
+
+        <div
+            class="overall-percentage"
+            id="overallPercentage"
+        >
+            0%
+        </div>
+
+
+        <div class="progress">
+
+            <div
+                class="progress-bar"
+                id="progressBar"
+            ></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- DETAILS -->
+
+    <div class="details-box">
+
+        <h2>
+            📋 Performance Summary
+        </h2>
+
+
+        <div class="detail">
+
+            <strong>
+                Academic Marks:
+            </strong>
+
+            <span id="marksDetail">
+                No marks available
+            </span>
+
+        </div>
+
+
+        <div class="detail">
+
+            <strong>
+                Attendance:
+            </strong>
+
+            <span id="attendanceDetail">
+                No attendance available
+            </span>
+
+        </div>
+
+
+        <div class="detail">
+
+            <strong>
+                Projects:
+            </strong>
+
+            <span id="projectsDetail">
+                No projects uploaded
+            </span>
+
+        </div>
+
+
+        <div class="detail">
+
+            <strong>
+                Daily Study:
+            </strong>
+
+            <span id="studyDetail">
+                No study schedule added
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <p>
+        © 2026 Student Study Portal | BCA
+    </p>
+
+</footer>
+
+
+<script>
+
+
+/* LOGIN CHECK */
+
+const student =
+JSON.parse(
+    localStorage.getItem("studentData")
+);
+
+
+if(!student){
+
+    window.location.href="login.html";
+
+}
+
+
+/* LOGOUT */
+
+function logout(){
+
+    localStorage.removeItem("studentData");
+
+    window.location.href="login.html";
+
+}
+
+
+/* STUDENT NAME */
+
+if(student){
+
+    document.getElementById(
+        "studentName"
+    ).textContent =
+        student.name || "Student";
+
+}
+
+
+/* ========================= */
+/* MARKS PERFORMANCE */
+/* ========================= */
+
+const marks =
+JSON.parse(
+    localStorage.getItem("markList")
+) || [];
+
+
+let marksPercentage = 0;
+
+
+if(marks.length > 0){
+
+    let totalMarks = 0;
+
+
+    marks.forEach(function(item){
+
+        totalMarks +=
+        Number(item.marks);
+
+    });
+
+
+    marksPercentage =
+    totalMarks / marks.length;
+
+
+    marksPercentage =
+    Math.min(
+        marksPercentage,
+        100
+    );
+
+
+    document.getElementById(
+        "marksPercentage"
+    ).textContent =
+        marksPercentage.toFixed(2) + "%";
+
+
+    document.getElementById(
+        "marksDetail"
+    ).textContent =
+        marksPercentage.toFixed(2) +
+        "% average marks";
+
+}
+
+
+/* ========================= */
+/* ATTENDANCE */
+/* ========================= */
+
+const attendance =
+JSON.parse(
+    localStorage.getItem("attendance")
+) || [];
+
+
+let attendancePercentage = 0;
+
+
+if(attendance.length > 0){
+
+    let present = 0;
+
+
+    attendance.forEach(function(item){
+
+        if(item.status === "Present"){
+
+            present++;
+
+        }
+
+    });
+
+
+    attendancePercentage =
+        (present / attendance.length) * 100;
+
+
+    document.getElementById(
+        "attendancePercentage"
+    ).textContent =
+        attendancePercentage.toFixed(2) + "%";
+
+
+    document.getElementById(
+        "attendanceDetail"
+    ).textContent =
+        attendancePercentage.toFixed(2) +
+        "% overall attendance";
+
+}
+
+
+/* ========================= */
+/* PROJECTS */
+/* ========================= */
+
+/*
+   Projects are stored in IndexedDB.
+   We open the same database used
+   by projects.html.
+*/
+
+let projectDatabase;
+
+
+const projectRequest =
+indexedDB.open(
+    "StudentPortalProjects",
+    1
+);
+
+
+projectRequest.onsuccess =
+function(event){
+
+    projectDatabase =
+        event.target.result;
+
+
+    const transaction =
+        projectDatabase.transaction(
+            ["projects"],
+            "readonly"
+        );
+
+
+    const store =
+        transaction.objectStore(
+            "projects"
+        );
+
+
+    const request =
+        store.getAll();
+
+
+    request.onsuccess =
+    function(){
+
+        const projects =
+            request.result;
+
+
+        document.getElementById(
+            "projectCount"
+        ).textContent =
+            projects.length;
+
+
+        if(projects.length > 0){
+
+            document.getElementById(
+                "projectsDetail"
+            ).textContent =
+                projects.length +
+                " project file(s) stored";
+
+        }
+
+    };
+
+};
+
+
+/* ========================= */
+/* STUDY SCHEDULE */
+/* ========================= */
+
+const schedules =
+JSON.parse(
+    localStorage.getItem("schedules")
+) || [];
+
+
+/*
+   Count only Daily Schedule
+   entries as study sessions.
+*/
+
+const studySchedules =
+schedules.filter(function(item){
+
+    return item.type === "Daily Schedule";
+
+});
+
+
+document.getElementById(
+    "studyCount"
+).textContent =
+    studySchedules.length;
+
+
+if(studySchedules.length > 0){
+
+    document.getElementById(
+        "studyDetail"
+    ).textContent =
+        studySchedules.length +
+        " daily study session(s) scheduled";
+
+}
+
+
+/* ========================= */
+/* SGPA / CGPA */
+/* ========================= */
+
+const performance =
+JSON.parse(
+    localStorage.getItem("performance")
+);
+
+
+let sgpaValue = 0;
+
+
+let cgpaValue = 0;
+
+
+if(performance){
+
+    document.getElementById(
+        "sgpa"
+    ).textContent =
+        performance.sgpa;
+
+
+    document.getElementById(
+        "cgpa"
+    ).textContent =
+        performance.cgpa;
+
+
+    sgpaValue =
+        Number(performance.sgpa) || 0;
+
+
+    cgpaValue =
+        Number(performance.cgpa) || 0;
+
+}
+
+
+/* ========================= */
+/* OVERALL PERFORMANCE */
+/* ========================= */
+
+
+/*
+   Overall performance is calculated from:
+
+   1. Marks          = 40%
+   2. Attendance     = 25%
+   3. SGPA           = 25%
+   4. Study activity = 10%
+
+   These are simply a project-level
+   calculation, not an official college grade.
+*/
+
+
+let sgpaPercentage =
+    (sgpaValue / 10) * 100;
+
+
+let studyPercentage = 0;
+
+
+if(studySchedules.length > 0){
+
+    /*
+       10 or more study sessions
+       gives the maximum study
+       activity contribution.
+    */
+
+    studyPercentage =
+        Math.min(
+            (studySchedules.length / 10) * 100,
+            100
+        );
+
+}
+
+
+let overall =
+
+    (marksPercentage * 0.40)
+
+    +
+
+    (attendancePercentage * 0.25)
+
+    +
+
+    (sgpaPercentage * 0.25)
+
+    +
+
+    (studyPercentage * 0.10);
+
+
+overall =
+Math.min(
+    Math.max(overall,0),
+    100
+);
+
+
+document.getElementById(
+    "overallPercentage"
+).textContent =
+    overall.toFixed(2) + "%";
+
+
+document.getElementById(
+    "progressBar"
+).style.width =
+    overall + "%";
+
+
+</script>
+
+
+</body>
+
+</html>
