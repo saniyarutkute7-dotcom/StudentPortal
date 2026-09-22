@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="manifest" href="manifest.json">
+
+    <title>Student Portal - Results</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+        }
+
+
+        /* Navigation */
+
+        nav {
+            background-color: #1e3a8a;
+            padding: 18px 30px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+
+        .nav-links a:hover {
+            color: #bfdbfe;
+        }
+
+
+        /* Header */
+
+        .page-header {
+            text-align: center;
+            padding: 45px 20px 30px;
+        }
+
+
+        .page-header h1 {
+            color: #1e3a8a;
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+
+        .page-header p {
+            color: #666;
+            font-size: 17px;
+        }
+
+
+        /* Main Container */
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: auto;
+            padding-bottom: 50px;
+        }
+
+
+        /* Student Information */
+
+        .student-info {
+            background-color: white;
+            padding: 25px;
+            border-radius: 15px;
+
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+
+            margin-bottom: 25px;
+        }
+
+
+        .student-info h2 {
+            color: #1e3a8a;
+            margin-bottom: 20px;
+        }
+
+
+        .info-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+
+        .info {
+            flex: 1;
+            min-width: 200px;
+
+            background-color: #eff6ff;
+
+            padding: 18px;
+
+            border-radius: 10px;
+        }
+
+
+        .info h3 {
+            color: #1e3a8a;
+            font-size: 14px;
+            margin-bottom: 7px;
+        }
+
+
+        .info p {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+
+        /* Result Form */
+
+        .result-form {
+            background-color: white;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+
+            margin-bottom: 25px;
+        }
+
+
+        .result-form h2 {
+            color: #1e3a8a;
+            margin-bottom: 20px;
+        }
+
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+
+
+        .form-group {
+            flex: 1;
+            margin-bottom: 15px;
+        }
+
+
+        label {
+            display: block;
+
+            font-weight: bold;
+
+            margin-bottom: 7px;
+
+            font-size: 14px;
+        }
+
+
+        input {
+            width: 100%;
+
+            padding: 12px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 7px;
+
+            font-size: 15px;
+        }
+
+
+        input:focus {
+            outline: none;
+            border-color: #1e3a8a;
+        }
+
+
+        .add-button {
+            width: 100%;
+
+            padding: 12px;
+
+            background-color: #1e3a8a;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 7px;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        .add-button:hover {
+            background-color: #172554;
+        }
+
+
+        /* SGPA CGPA */
+
+        .performance-box {
+            display: flex;
+
+            gap: 20px;
+
+            margin-bottom: 25px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .score-box {
+            flex: 1;
+
+            min-width: 200px;
+
+            background-color: white;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            text-align: center;
+
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+
+        .score-box h3 {
+            color: #1e3a8a;
+
+            margin-bottom: 10px;
+        }
+
+
+        .score-box p {
+            font-size: 30px;
+
+            font-weight: bold;
+
+            color: #1e3a8a;
+        }
+
+
+        /* Result Table */
+
+        .result-table {
+            background-color: white;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+
+            overflow-x: auto;
+        }
+
+
+        .result-table h2 {
+            color: #1e3a8a;
+
+            margin-bottom: 20px;
+        }
+
+
+        table {
+            width: 100%;
+
+            border-collapse: collapse;
+        }
+
+
+        th,
+        td {
+            padding: 13px;
+
+            border-bottom: 1px solid #ddd;
+
+            text-align: center;
+        }
+
+
+        th {
+            background-color: #1e3a8a;
+
+            color: white;
+        }
+
+
+        .delete-button {
+            background-color: #dc2626;
+
+            color: white;
+
+            border: none;
+
+            padding: 7px 12px;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+        }
+
+
+        .delete-button:hover {
+            background-color: #991b1b;
+        }
+
+
+        /* Footer */
+
+        footer {
+            background-color: #1e3a8a;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 20px;
+        }
+
+
+        /* Mobile */
+
+        @media (max-width: 700px) {
+
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+
+            .nav-links {
+                gap: 12px;
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+            }
+
+
+            .page-header h1 {
+                font-size: 30px;
+            }
+
+
+            .form-row {
+                flex-direction: column;
+
+                gap: 0;
+            }
+
+
+            .container {
+                width: 92%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- Navigation -->
+
+    <nav>
+
+        <div class="logo">
+            Student Portal
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="home.html">
+                Home
+            </a>
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="profile.html">
+                Profile
+            </a>
+
+            <a href="#" onclick="logout()">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- Header -->
+
+    <section class="page-header">
+
+        <h1>
+            My Results
+        </h1>
+
+        <p>
+            View and manage your academic results
+        </p>
+
+    </section>
+
+
+    <div class="container">
+
+
+        <!-- Student Information -->
+
+        <section class="student-info">
+
+            <h2>
+                Student Information
+            </h2>
+
+
+            <div class="info-container">
+
+
+                <div class="info">
+
+                    <h3>
+                        Student Name
+                    </h3>
+
+                    <p id="studentName">
+                        Loading...
+                    </p>
+
+                </div>
+
+
+                <div class="info">
+
+                    <h3>
+                        Course
+                    </h3>
+
+                    <p id="studentCourse">
+                        Loading...
+                    </p>
+
+                </div>
+
+
+                <div class="info">
+
+                    <h3>
+                        Semester
+                    </h3>
+
+                    <p id="studentSemester">
+                        Loading...
+                    </p>
+
+                </div>
+
+
+                <div class="info">
+
+                    <h3>
+                        Academic Year
+                    </h3>
+
+                    <p id="studentYear">
+                        Loading...
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- SGPA / CGPA -->
+
+        <section class="performance-box">
+
+
+            <div class="score-box">
+
+                <h3>
+                    SGPA
+                </h3>
+
+                <p id="sgpaDisplay">
+                    0.00
+                </p>
+
+            </div>
+
+
+            <div class="score-box">
+
+                <h3>
+                    CGPA
+                </h3>
+
+                <p id="cgpaDisplay">
+                    0.00
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- Add Result -->
+
+        <section class="result-form">
+
+            <h2>
+                Add Subject Result
+            </h2>
+
+
+            <div class="form-row">
+
+
+                <div class="form-group">
+
+                    <label for="subject">
+                        Subject
+                    </label>
+
+                    <input
+                        type="text"
+                        id="subject"
+                        placeholder="Enter subject name"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="marks">
+                        Marks
+                    </label>
+
+                    <input
+                        type="number"
+                        id="marks"
+                        placeholder="Enter marks"
+                        min="0"
+                        max="100"
+                    >
+
+                </div>
+
+
+            </div>
+
+
+            <button
+                class="add-button"
+                onclick="addResult()"
+            >
+                Add Result
+            </button>
+
+        </section>
+
+
+        <!-- Result Table -->
+
+        <section class="result-table">
+
+            <h2>
+                Subject Results
+            </h2>
+
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Subject
+                        </th>
+
+                        <th>
+                            Marks
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="resultBody">
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+
+    </div>
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <p>
+            © 2026 Student Portal | BCA
+        </p>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+
+    <script>
+
+
+        /* =================================
+           LOGIN PROTECTION
+        ================================= */
+
+        const student =
+            JSON.parse(localStorage.getItem("studentData"));
+
+        const isLoggedIn =
+            localStorage.getItem("isLoggedIn") === "true";
+
+
+        if (!student || !isLoggedIn) {
+
+            window.location.href = "login.html";
+
+        }
+
+
+        /* =================================
+           DISPLAY STUDENT INFORMATION
+        ================================= */
+
+        if (student) {
+
+            document.getElementById("studentName").textContent =
+                student.fullName || "Not Available";
+
+
+            document.getElementById("studentCourse").textContent =
+                student.course || "Not Available";
+
+
+            document.getElementById("studentSemester").textContent =
+                student.semester || "Not Available";
+
+
+            document.getElementById("studentYear").textContent =
+                student.academicYear || "Not Available";
+
+        }
+
+
+        /* =================================
+           LOAD SAVED RESULTS
+        ================================= */
+
+        let markList =
+            JSON.parse(localStorage.getItem("markList")) || [];
+
+
+        /* =================================
+           ADD RESULT
+        ================================= */
+
+        function addResult() {
+
+            const subject =
+                document.getElementById("subject").value.trim();
+
+            const marks =
+                Number(document.getElementById("marks").value);
+
+
+            if (subject === "") {
+
+                alert("Please enter the subject name.");
+
+                return;
+
+            }
+
+
+            if (
+                document.getElementById("marks").value === "" ||
+                marks < 0 ||
+                marks > 100
+            ) {
+
+                alert("Please enter marks between 0 and 100.");
+
+                return;
+
+            }
+
+
+            markList.push({
+
+                subject: subject,
+
+                marks: marks
+
+            });
+
+
+            localStorage.setItem(
+                "markList",
+                JSON.stringify(markList)
+            );
+
+
+            document.getElementById("subject").value = "";
+
+            document.getElementById("marks").value = "";
+
+
+            displayResults();
+
+        }
+
+
+        /* =================================
+           DISPLAY RESULTS
+        ================================= */
+
+        function displayResults() {
+
+            const resultBody =
+                document.getElementById("resultBody");
+
+
+            resultBody.innerHTML = "";
+
+
+            markList.forEach(function(result, index) {
+
+                const row =
+                    document.createElement("tr");
+
+
+                row.innerHTML = `
+
+                    <td>
+                        ${result.subject}
+                    </td>
+
+                    <td>
+                        ${result.marks}
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="delete-button"
+                            onclick="deleteResult(${index})"
+                        >
+                            Delete
+                        </button>
+
+                    </td>
+
+                `;
+
+
+                resultBody.appendChild(row);
+
+            });
+
+
+            calculateAverage();
+
+        }
+
+
+        /* =================================
+           DELETE RESULT
+        ================================= */
+
+        function deleteResult(index) {
+
+            markList.splice(index, 1);
+
+
+            localStorage.setItem(
+                "markList",
+                JSON.stringify(markList)
+            );
+
+
+            displayResults();
+
+        }
+
+
+        /* =================================
+           CALCULATE AVERAGE
+        ================================= */
+
+        function calculateAverage() {
+
+            if (markList.length === 0) {
+
+                document.getElementById("sgpaDisplay").textContent =
+                    "0.00";
+
+                document.getElementById("cgpaDisplay").textContent =
+                    "0.00";
+
+                localStorage.setItem(
+                    "performance",
+                    JSON.stringify({
+                        sgpa: 0,
+                        cgpa: 0
+                    })
+                );
+
+                return;
+
+            }
+
+
+            let totalMarks = 0;
+
+
+            markList.forEach(function(result) {
+
+                totalMarks += Number(result.marks);
+
+            });
+
+
+            const average =
+                totalMarks / markList.length;
+
+
+            /*
+                This is a simple project calculation.
+
+                It is NOT an official college SGPA formula.
+            */
+
+
+            const sgpa =
+                average / 10;
+
+
+            const cgpa =
+                sgpa;
+
+
+            document.getElementById("sgpaDisplay").textContent =
+                sgpa.toFixed(2);
+
+
+            document.getElementById("cgpaDisplay").textContent =
+                cgpa.toFixed(2);
+
+
+            /* Save for Performance page */
+
+            localStorage.setItem(
+
+                "performance",
+
+                JSON.stringify({
+
+                    sgpa: Number(sgpa.toFixed(2)),
+
+                    cgpa: Number(cgpa.toFixed(2))
+
+                })
+
+            );
+
+        }
+
+
+        /* =================================
+           LOGOUT
+        ================================= */
+
+        function logout() {
+
+            /* Keep studentData saved */
+
+            localStorage.removeItem("isLoggedIn");
+
+
+            window.location.href = "login.html";
+
+        }
+
+
+        /* =================================
+           DISPLAY SAVED DATA WHEN PAGE OPENS
+        ================================= */
+
+        displayResults();
+
+
+    </script>
+
+
+</body>
+
+</html>

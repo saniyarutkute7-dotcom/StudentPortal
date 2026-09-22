@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="manifest.json">
+
+<title>Student Portal - Profile</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+    color:#333;
+}
+
+nav{
+    background:#243b55;
+    padding:18px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    color:white;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.nav-links{
+    display:flex;
+    gap:25px;
+}
+
+.nav-links a{
+    color:white;
+    text-decoration:none;
+}
+
+.container{
+    width:90%;
+    max-width:900px;
+    margin:40px auto;
+}
+
+h1{
+    text-align:center;
+    color:#243b55;
+    margin-bottom:30px;
+}
+
+.box{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+    margin-bottom:25px;
+}
+
+.box h2{
+    color:#243b55;
+    margin-bottom:20px;
+}
+
+.info{
+    display:flex;
+    justify-content:space-between;
+    padding:13px;
+    margin-bottom:8px;
+    background:#eef4fb;
+    border-radius:7px;
+}
+
+.subject{
+    padding:12px;
+    background:#eef4fb;
+    border-radius:7px;
+    margin-bottom:8px;
+}
+
+.performance{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.performance-card{
+    flex:1;
+    min-width:200px;
+    text-align:center;
+    background:#eef4fb;
+    padding:25px;
+    border-radius:10px;
+}
+
+.performance-card h3{
+    color:#243b55;
+    margin-bottom:10px;
+}
+
+.performance-card p{
+    font-size:25px;
+    font-weight:bold;
+}
+
+footer{
+    background:#243b55;
+    color:white;
+    text-align:center;
+    padding:18px;
+    margin-top:40px;
+}
+
+@media(max-width:700px){
+
+    nav{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .nav-links{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .info{
+        flex-direction:column;
+        gap:5px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">
+Student Portal
+</div>
+
+<div class="nav-links">
+
+<a href="home.html">Home</a>
+
+<a href="dashboard.html">Dashboard</a>
+
+   
+<a href="#" onclick="logout()">Logout</a>
+</div>
+
+</nav>
+
+
+<div class="container">
+
+<h1>👤 Student Profile</h1>
+
+
+<!-- PERSONAL INFORMATION -->
+
+<div class="box">
+
+<h2>Personal Information</h2>
+
+<div class="info">
+
+<strong>Name</strong>
+
+<span id="name">Not Available</span>
+
+</div>
+
+
+<div class="info">
+
+<strong>Course</strong>
+
+<span id="course">Not Available</span>
+
+</div>
+
+
+<div class="info">
+
+<strong>Year</strong>
+
+<span id="year">Not Available</span>
+
+</div>
+
+
+<div class="info">
+
+<strong>Semester</strong>
+
+<span id="semester">Not Available</span>
+
+</div>
+
+</div>
+
+
+<!-- PERFORMANCE -->
+
+<div class="box">
+
+<h2>Academic Performance</h2>
+
+<div class="performance">
+
+<div class="performance-card">
+
+<h3>SGPA</h3>
+
+<p id="sgpa">-</p>
+
+</div>
+
+
+<div class="performance-card">
+
+<h3>CGPA</h3>
+
+<p id="cgpa">-</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- SUBJECTS -->
+
+<div class="box">
+
+<h2>Subjects</h2>
+
+<div id="subjects"></div>
+
+</div>
+
+
+<!-- ATTENDANCE -->
+
+<div class="box">
+
+<h2>Attendance</h2>
+
+<div id="attendance"></div>
+
+</div>
+
+
+<!-- MARK LIST -->
+
+<div class="box">
+
+<h2>Mark List</h2>
+
+<div id="marks"></div>
+
+</div>
+
+
+</div>
+
+
+<footer>
+
+<p>© 2026 Student Portal | BCA</p>
+
+</footer>
+
+
+<script>
+const student = JSON.parse(localStorage.getItem("studentData"));
+const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
+if (!student || !isLoggedIn) {
+    window.location.href = "login.html";
+}
+
+
+if(student){
+
+    document.getElementById("name").textContent =
+student.fullName || student.name || "Not Available";
+
+    document.getElementById("course").textContent =
+        student.course || "Not Available";
+
+    document.getElementById("year").textContent =
+        student.year || "Not Available";
+
+    document.getElementById("semester").textContent =
+        student.semester || "Not Available";
+
+}
+
+
+/* PERFORMANCE */
+
+const performance =
+JSON.parse(
+    localStorage.getItem("performance")
+);
+
+
+if(performance){
+
+    document.getElementById("sgpa").textContent =
+        performance.sgpa;
+
+    document.getElementById("cgpa").textContent =
+        performance.cgpa;
+
+}
+
+
+/* SUBJECTS */
+
+const subjects =
+JSON.parse(
+    localStorage.getItem("subjects")
+) || [];
+
+
+const subjectContainer =
+document.getElementById("subjects");
+
+
+if(subjects.length === 0){
+
+    subjectContainer.innerHTML =
+    "<p>No subjects added.</p>";
+
+}
+else{
+
+    subjects.forEach(function(subject){
+
+        subjectContainer.innerHTML += `
+
+        <div class="subject">
+            📚 ${subject}
+        </div>
+
+        `;
+
+    });
+
+}
+
+
+/* MARKS */
+
+const marks =
+JSON.parse(
+    localStorage.getItem("markList")
+) || [];
+
+
+const marksContainer =
+document.getElementById("marks");
+
+
+if(marks.length === 0){
+
+    marksContainer.innerHTML =
+    "<p>No marks added.</p>";
+
+}
+else{
+
+    marks.forEach(function(item){
+
+        marksContainer.innerHTML += `
+
+        <div class="subject">
+
+            <strong>${item.subject}</strong>
+
+            <br>
+
+            Marks: ${item.marks}
+
+            <br>
+
+            Grade: ${item.grade}
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+
+/* ATTENDANCE */
+
+const attendance =
+JSON.parse(
+    localStorage.getItem("attendance")
+) || [];
+
+
+const attendanceContainer =
+document.getElementById("attendance");
+
+
+if(attendance.length === 0){
+
+    attendanceContainer.innerHTML =
+    "<p>No attendance records.</p>";
+
+}
+else{
+
+    const subjectsAttendance = {};
+
+
+    attendance.forEach(function(item){
+
+        if(!subjectsAttendance[item.subject]){
+
+            subjectsAttendance[item.subject] = {
+
+                total:0,
+
+                present:0
+
+            };
+
+        }
+
+
+        subjectsAttendance[item.subject].total++;
+
+
+        if(item.status === "Present"){
+
+            subjectsAttendance[item.subject].present++;
+
+        }
+
+    });
+
+
+    for(let subject in subjectsAttendance){
+
+        const total =
+        subjectsAttendance[subject].total;
+
+        const present =
+        subjectsAttendance[subject].present;
+
+        const percentage =
+        ((present / total) * 100).toFixed(2);
+
+
+        attendanceContainer.innerHTML += `
+
+        <div class="subject">
+
+            <strong>${subject}</strong>
+
+            <br>
+
+            Present:
+            ${present}/${total}
+
+            <br>
+
+            Attendance:
+            ${percentage}%
+
+        </div>
+
+        `;
+
+    }
+
+}
+
+</script>
+
+</body>
+
+</html>

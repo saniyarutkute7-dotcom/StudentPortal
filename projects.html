@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+      
+<link rel="manifest" href="manifest.json">
+
+<title>Student Study Portal - Projects</title>
+
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+
+body{
+    background:#f4f6f9;
+    color:#333;
+}
+
+
+/* NAVBAR */
+
+nav{
+
+    background:#243b55;
+
+    padding:18px 30px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+
+.logo{
+
+    color:white;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+}
+
+
+.nav-links{
+
+    display:flex;
+
+    gap:25px;
+
+}
+
+
+.nav-links a{
+
+    color:white;
+
+    text-decoration:none;
+
+    font-size:15px;
+
+}
+
+
+.nav-links a:hover{
+
+    color:#bcd4f6;
+
+}
+
+
+/* PAGE HEADER */
+
+.page-header{
+
+    text-align:center;
+
+    padding:40px 20px 25px;
+
+}
+
+
+.page-header h1{
+
+    color:#243b55;
+
+    font-size:35px;
+
+    margin-bottom:10px;
+
+}
+
+
+.page-header p{
+
+    color:#666;
+
+}
+
+
+/* UPLOAD BOX */
+
+.upload-box{
+
+    width:90%;
+
+    max-width:700px;
+
+    margin:0 auto 35px;
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:15px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+
+}
+
+
+.upload-box h2{
+
+    color:#243b55;
+
+    margin-bottom:20px;
+
+}
+
+
+label{
+
+    display:block;
+
+    font-weight:bold;
+
+    margin-top:15px;
+
+    margin-bottom:8px;
+
+}
+
+
+input[type="text"],
+input[type="file"]{
+
+    width:100%;
+
+    padding:12px;
+
+    border:1px solid #ccc;
+
+    border-radius:7px;
+
+    font-size:15px;
+
+}
+
+
+.upload-btn{
+
+    width:100%;
+
+    margin-top:20px;
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:7px;
+
+    background:#243b55;
+
+    color:white;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+}
+
+
+.upload-btn:hover{
+
+    background:#162b40;
+
+}
+
+
+/* PROJECT SECTION */
+
+.projects-section{
+
+    width:90%;
+
+    max-width:900px;
+
+    margin:auto;
+
+    padding-bottom:50px;
+
+}
+
+
+.projects-section h2{
+
+    text-align:center;
+
+    color:#243b55;
+
+    margin-bottom:25px;
+
+}
+
+
+/* PROJECT CARD */
+
+.project-card{
+
+    background:white;
+
+    margin-bottom:20px;
+
+    padding:20px;
+
+    border-radius:12px;
+
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+
+}
+
+
+.project-title{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+    color:#243b55;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+}
+
+
+.project-title button{
+
+    border:none;
+
+    background:#243b55;
+
+    color:white;
+
+    padding:8px 14px;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+}
+
+
+.project-title button:hover{
+
+    background:#162b40;
+
+}
+
+
+/* FILE CARD */
+
+.file-container{
+
+    display:none;
+
+    margin-top:15px;
+
+}
+
+
+.file-container.show{
+
+    display:block;
+
+}
+
+
+.file-card{
+
+    background:#f4f6f9;
+
+    padding:15px;
+
+    margin-top:10px;
+
+    border-radius:8px;
+
+}
+
+
+.file-name{
+
+    font-weight:bold;
+
+    word-break:break-word;
+
+    margin-bottom:7px;
+
+}
+
+
+.file-info{
+
+    color:#777;
+
+    font-size:13px;
+
+    margin-bottom:12px;
+
+}
+
+
+.file-buttons{
+
+    display:flex;
+
+    gap:8px;
+
+    flex-wrap:wrap;
+
+}
+
+
+.view-btn,
+.download-btn,
+.delete-btn{
+
+    border:none;
+
+    padding:8px 12px;
+
+    border-radius:6px;
+
+    color:white;
+
+    cursor:pointer;
+
+}
+
+
+.view-btn{
+
+    background:#2874a6;
+
+}
+
+
+.download-btn{
+
+    background:#27ae60;
+
+}
+
+
+.delete-btn{
+
+    background:#c0392b;
+
+}
+
+
+.no-projects{
+
+    text-align:center;
+
+    color:#777;
+
+    padding:20px;
+
+}
+
+
+/* FOOTER */
+
+footer{
+
+    background:#243b55;
+
+    color:white;
+
+    text-align:center;
+
+    padding:18px;
+
+}
+
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    nav{
+
+        flex-direction:column;
+
+        gap:15px;
+
+    }
+
+
+    .nav-links{
+
+        gap:15px;
+
+        flex-wrap:wrap;
+
+        justify-content:center;
+
+    }
+
+
+    .project-title{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav>
+
+    <div class="logo">
+        Student Study Portal
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="home.html">
+            Home
+        </a>
+
+
+        <a href="dashboard.html">
+            Dashboard
+        </a>
+
+
+        <a href="profile.html">
+            Profile
+        </a>
+
+
+        <a href="#" onclick="logout()">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- HEADER -->
+
+<section class="page-header">
+
+    <h1>💻 Projects</h1>
+
+    <p>
+        Store and manage your project presentations and important files
+    </p>
+
+</section>
+
+
+<!-- UPLOAD -->
+
+<section class="upload-box">
+
+    <h2>
+        Upload Project Files
+    </h2>
+
+
+    <label for="projectName">
+        Project Name
+    </label>
+
+
+    <input
+        type="text"
+        id="projectName"
+        placeholder="Example: Student Management System"
+    >
+
+
+    <label for="projectFiles">
+        Select Project Files
+    </label>
+
+
+    <input
+        type="file"
+        id="projectFiles"
+        multiple
+    >
+
+
+    <button
+        class="upload-btn"
+        onclick="uploadProjectFiles()"
+    >
+        Upload Files
+    </button>
+
+</section>
+
+
+<!-- PROJECTS -->
+
+<section class="projects-section">
+
+    <h2>
+        My Projects
+    </h2>
+
+
+    <div id="projectsContainer"></div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>
+        © 2026 Student Study Portal | BCA
+    </p>
+
+</footer>
+
+
+<script> 
+/* Login checking*/
+const student = JSON.parse(localStorage.getItem("studentData"));
+const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
+if (!student || !isLoggedIn) {
+    window.location.href = "login.html";
+}
+
+function logout() {
+    localStorage.removeItem("isLoggedIn");
+    window.location.href = "login.html";
+}
+
+
+/* LOGOUT */
+
+function logout(){
+
+    localStorage.removeItem("studentData");
+
+    window.location.href="login.html";
+
+}
+
+
+/* OPEN DATABASE */
+
+let database;
+
+
+const request =
+indexedDB.open(
+    "StudentPortalProjects",
+    1
+);
+
+
+/* CREATE STORAGE */
+
+request.onupgradeneeded =
+function(event){
+
+    database =
+    event.target.result;
+
+
+    if(
+        !database.objectStoreNames.contains(
+            "projects"
+        )
+    ){
+
+        database.createObjectStore(
+            "projects",
+            {
+                keyPath:"id",
+                autoIncrement:true
+            }
+        );
+
+    }
+
+};
+
+
+/* DATABASE READY */
+
+request.onsuccess =
+function(event){
+
+    database =
+    event.target.result;
+
+    displayProjects();
+
+};
+
+
+/* DATABASE ERROR */
+
+request.onerror =
+function(){
+
+    alert(
+        "Unable to open project file storage."
+    );
+
+};
+
+
+/* UPLOAD PROJECT FILES */
+
+function uploadProjectFiles(){
+
+    const projectName =
+    document
+    .getElementById("projectName")
+    .value
+    .trim();
+
+
+    const files =
+    document
+    .getElementById("projectFiles")
+    .files;
+
+
+    if(projectName === ""){
+
+        alert(
+            "Please enter the project name."
+        );
+
+        return;
+
+    }
+
+
+    if(files.length === 0){
+
+        alert(
+            "Please select at least one file."
+        );
+
+        return;
+
+    }
+
+
+    const transaction =
+    database.transaction(
+        ["projects"],
+        "readwrite"
+    );
+
+
+    const store =
+    transaction.objectStore(
+        "projects"
+    );
+
+
+    for(
+        let i=0;
+        i<files.length;
+        i++
+    ){
+
+        const file = files[i];
+
+
+        store.add({
+
+            projectName:projectName,
+
+            name:file.name,
+
+            type:file.type,
+
+            size:file.size,
+
+            file:file,
+
+            uploadedAt:
+            new Date().toLocaleString()
+
+        });
+
+    }
+
+
+    transaction.oncomplete =
+    function(){
+
+        document
+        .getElementById("projectName")
+        .value="";
+
+
+        document
+        .getElementById("projectFiles")
+        .value="";
+
+
+        alert(
+            "Project files uploaded successfully!"
+        );
+
+
+        displayProjects();
+
+    };
+
+}
+
+
+/* DISPLAY PROJECTS */
+
+function displayProjects(){
+
+    if(!database){
+
+        return;
+
+    }
+
+
+    const container =
+    document
+    .getElementById(
+        "projectsContainer"
+    );
+
+
+    const transaction =
+    database.transaction(
+        ["projects"],
+        "readonly"
+    );
+
+
+    const store =
+    transaction.objectStore(
+        "projects"
+    );
+
+
+    const request =
+    store.getAll();
+
+
+    request.onsuccess =
+    function(){
+
+        const files =
+        request.result;
+
+
+        container.innerHTML="";
+
+
+        if(files.length === 0){
+
+            container.innerHTML = `
+
+                <div class="no-projects">
+
+                    No project files uploaded yet.
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        /* GET UNIQUE PROJECT NAMES */
+
+        const projectNames=[];
+
+
+        files.forEach(
+            function(file){
+
+                if(
+                    !projectNames.includes(
+                        file.projectName
+                    )
+                ){
+
+                    projectNames.push(
+                        file.projectName
+                    );
+
+                }
+
+            }
+        );
+
+
+        /* CREATE PROJECT CARDS */
+
+        projectNames.forEach(
+            function(projectName){
+
+                const projectFiles =
+                files.filter(
+                    function(file){
+
+                        return
+                        file.projectName ===
+                        projectName;
+
+                    }
+                );
+
+
+                const projectCard =
+                document.createElement(
+                    "div"
+                );
+
+
+                projectCard.className =
+                "project-card";
+
+
+                const projectId =
+                "project_" +
+                Math.random()
+                .toString(36)
+                .substring(2,10);
+
+
+                projectCard.innerHTML = `
+
+                    <div class="project-title">
+
+                        <span>
+                            💻 ${projectName}
+                        </span>
+
+
+                        <button
+                            onclick="toggleProject('${projectId}')"
+                        >
+                            View Files
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="${projectId}"
+                        class="file-container"
+                    >
+                    </div>
+
+                `;
+
+
+                container.appendChild(
+                    projectCard
+                );
+
+
+                const fileContainer =
+                document.getElementById(
+                    projectId
+                );
+
+
+                /* SHOW FILES */
+
+                projectFiles.forEach(
+                    function(file){
+
+                        const fileCard =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                        fileCard.className =
+                        "file-card";
+
+
+                        const fileSize =
+                        formatFileSize(
+                            file.size
+                        );
+
+
+                        fileCard.innerHTML = `
+
+                            <div class="file-name">
+
+                                📄 ${file.name}
+
+                            </div>
+
+
+                            <div class="file-info">
+
+                                Uploaded:
+                                ${file.uploadedAt}
+
+                                <br>
+
+                                Size:
+                                ${fileSize}
+
+                            </div>
+
+
+                            <div class="file-buttons">
+
+                                <button
+                                    class="view-btn"
+                                    onclick="viewFile(${file.id})"
+                                >
+                                    👁 View
+                                </button>
+
+
+                                <button
+                                    class="download-btn"
+                                    onclick="downloadFile(${file.id})"
+                                >
+                                    ⬇ Download
+                                </button>
+
+
+                                <button
+                                    class="delete-btn"
+                                    onclick="deleteFile(${file.id})"
+                                >
+                                    🗑 Delete
+                                </button>
+
+                            </div>
+
+                        `;
+
+
+                        fileContainer.appendChild(
+                            fileCard
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+    };
+
+}
+
+
+/* SHOW / HIDE FILES */
+
+function toggleProject(projectId){
+
+    const container =
+    document.getElementById(
+        projectId
+    );
+
+
+    container.classList.toggle(
+        "show"
+    );
+
+}
+
+
+/* VIEW FILE */
+
+function viewFile(id){
+
+    const transaction =
+    database.transaction(
+        ["projects"],
+        "readonly"
+    );
+
+
+    const store =
+    transaction.objectStore(
+        "projects"
+    );
+
+
+    const request =
+    store.get(id);
+
+
+    request.onsuccess =
+    function(){
+
+        const data =
+        request.result;
+
+
+        const url =
+        URL.createObjectURL(
+            data.file
+        );
+
+
+        window.open(
+            url,
+            "_blank"
+        );
+
+    };
+
+}
+
+
+/* DOWNLOAD FILE */
+
+function downloadFile(id){
+
+    const transaction =
+    database.transaction(
+        ["projects"],
+        "readonly"
+    );
+
+
+    const store =
+    transaction.objectStore(
+        "projects"
+    );
+
+
+    const request =
+    store.get(id);
+
+
+    request.onsuccess =
+    function(){
+
+        const data =
+        request.result;
+
+
+        const url =
+        URL.createObjectURL(
+            data.file
+        );
+
+
+        const link =
+        document.createElement(
+            "a"
+        );
+
+
+        link.href=url;
+
+
+        link.download=data.name;
+
+
+        document.body.appendChild(
+            link
+        );
+
+
+        link.click();
+
+
+        document.body.removeChild(
+            link
+        );
+
+
+        URL.revokeObjectURL(
+            url
+        );
+
+    };
+
+}
+
+
+/* DELETE FILE */
+
+function deleteFile(id){
+
+    const confirmation =
+    confirm(
+        "Do you want to delete this file?"
+    );
+
+
+    if(!confirmation){
+
+        return;
+
+    }
+
+
+    const transaction =
+    database.transaction(
+        ["projects"],
+        "readwrite"
+    );
+
+
+    const store =
+    transaction.objectStore(
+        "projects"
+    );
+
+
+    store.delete(id);
+
+
+    transaction.oncomplete =
+    function(){
+
+        displayProjects();
+
+    };
+
+}
+
+
+/* FILE SIZE */
+
+function formatFileSize(bytes){
+
+    if(bytes === 0){
+
+        return "0 Bytes";
+
+    }
+
+
+    const sizes=[
+        "Bytes",
+        "KB",
+        "MB",
+        "GB"
+    ];
+
+
+    const i =
+    Math.floor(
+        Math.log(bytes) /
+        Math.log(1024)
+    );
+
+
+    return(
+        parseFloat(
+            (bytes /
+            Math.pow(1024,i))
+            .toFixed(2)
+        )
+        + " "
+        + sizes[i]
+    );
+
+}
+
+</script>
+
+</body>
+
+</html>
