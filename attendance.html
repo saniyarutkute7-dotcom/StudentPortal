@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="manifest.json">
+
+<title>Student Portal - Attendance</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+    color:#333;
+}
+
+nav{
+    background:#243b55;
+    padding:18px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    color:white;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.nav-links{
+    display:flex;
+    gap:25px;
+}
+
+.nav-links a{
+    color:white;
+    text-decoration:none;
+}
+
+.container{
+    width:90%;
+    max-width:900px;
+    margin:40px auto;
+}
+
+h1{
+    text-align:center;
+    color:#243b55;
+    margin-bottom:30px;
+}
+
+.box{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+    margin-bottom:25px;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    margin:12px 0 7px;
+}
+
+input,select{
+    width:100%;
+    padding:11px;
+    border:1px solid #ccc;
+    border-radius:7px;
+}
+
+button{
+    background:#243b55;
+    color:white;
+    border:none;
+    padding:11px 18px;
+    border-radius:7px;
+    cursor:pointer;
+    margin-top:15px;
+}
+
+.attendance-card{
+    background:#eef4fb;
+    padding:18px;
+    border-radius:10px;
+    margin-top:15px;
+}
+
+.delete{
+    background:#c0392b;
+}
+
+footer{
+    background:#243b55;
+    color:white;
+    text-align:center;
+    padding:18px;
+    margin-top:40px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">
+Student Portal
+</div>
+
+<div class="nav-links">
+
+<a href="home.html">Home</a>
+
+<a href="dashboard.html">Dashboard</a>
+
+<a href="profile.html">Profile</a>
+
+</div>
+
+</nav>
+
+
+<div class="container">
+
+<h1>📝 Attendance</h1>
+
+
+<div class="box">
+
+<h2>Enter Daily Attendance</h2>
+
+
+<label>Subject</label>
+
+<input
+type="text"
+id="subject"
+placeholder="Example: DBMS"
+>
+
+
+<label>Date</label>
+
+<input
+type="date"
+id="date"
+>
+
+
+<label>Attendance</label>
+
+<select id="status">
+
+<option value="Present">
+Present
+</option>
+
+<option value="Absent">
+Absent
+</option>
+
+</select>
+
+
+<button onclick="addAttendance()">
+Save Attendance
+</button>
+
+</div>
+
+
+<div class="box">
+
+<h2>Attendance Records</h2>
+
+<div id="attendanceList"></div>
+
+</div>
+
+
+<div class="box">
+
+<h2>Subject-wise Attendance</h2>
+
+<div id="summary"></div>
+
+</div>
+
+</div>
+
+
+<footer>
+
+<p>© 2026 Student Portal | BCA</p>
+
+</footer>
+
+
+<script>
+
+
+let attendance =
+JSON.parse(
+    localStorage.getItem("attendance")
+) || [];
+
+
+function addAttendance(){
+
+    const subject =
+    document.getElementById("subject")
+    .value.trim();
+
+    const date =
+    document.getElementById("date").value;
+
+    const status =
+    document.getElementById("status").value;
+
+
+    if(subject === "" || date === ""){
+
+        alert("Please enter subject and date.");
+
+        return;
+
+    }
+
+
+    attendance.push({
+
+        subject:subject,
+
+        date:date,
+
+        status:status
+
+    });
+
+
+    localStorage.setItem(
+        "attendance",
+        JSON.stringify(attendance)
+    );
+
+
+    document.getElementById("subject").value="";
+    document.getElementById("date").value="";
+
+
+    displayAttendance();
+
+    displaySummary();
+
+}
+
+
+function deleteAttendance(index){
+
+    attendance.splice(index,1);
+
+    localStorage.setItem(
+        "attendance",
+        JSON.stringify(attendance)
+    );
+
+    displayAttendance();
+
+    displaySummary();
+
+}
+
+
+function displayAttendance(){
+
+    const list =
+    document.getElementById("attendanceList");
+
+    list.innerHTML="";
+
+
+    if(attendance.length === 0){
+
+        list.innerHTML =
+        "<p>No attendance records yet.</p>";
+
+        return;
+
+    }
+
+
+    attendance.forEach(function(item,index){
+
+        list.innerHTML += `
+
+        <div class="attendance-card">
+
+            <p>
+            <strong>Subject:</strong>
+            ${item.subject}
+            </p>
+
+            <p>
+            <strong>Date:</strong>
+            ${item.date}
+            </p>
+
+            <p>
+            <strong>Status:</strong>
+            ${item.status}
+            </p>
+
+            <button
+            class="delete"
+            onclick="deleteAttendance(${index})">
+
+            Delete
+
+            </button>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+
+function displaySummary(){
+
+    const summary =
+    document.getElementById("summary");
+
+    summary.innerHTML="";
+
+
+    if(attendance.length === 0){
+
+        summary.innerHTML =
+        "<p>No attendance data available.</p>";
+
+        return;
+
+    }
+
+
+    const subjects = {};
+
+
+    attendance.forEach(function(item){
+
+        if(!subjects[item.subject]){
+
+            subjects[item.subject] = {
+
+                total:0,
+
+                present:0
+
+            };
+
+        }
+
+
+        subjects[item.subject].total++;
+
+
+        if(item.status === "Present"){
+
+            subjects[item.subject].present++;
+
+        }
+
+    });
+
+
+    for(let subject in subjects){
+
+        const total =
+        subjects[subject].total;
+
+        const present =
+        subjects[subject].present;
+
+        const percentage =
+        ((present / total) * 100).toFixed(2);
+
+
+        summary.innerHTML += `
+
+        <div class="attendance-card">
+
+            <p>
+            <strong>${subject}</strong>
+            </p>
+
+            <p>
+            Present: ${present}
+            </p>
+
+            <p>
+            Total Classes: ${total}
+            </p>
+
+            <p>
+            Attendance: ${percentage}%
+            </p>
+
+        </div>
+
+        `;
+
+    }
+
+}
+
+
+displayAttendance();
+
+displaySummary();
+
+</script>
+
+</body>
+
+</html>

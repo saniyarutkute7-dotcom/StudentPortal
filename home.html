@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="manifest.json">
+
+    <title>Student Study Portal - Home</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f2f5f9;
+            color: #333;
+        }
+
+        /* Navigation Bar */
+
+        nav {
+            height: 70px;
+            background: #243b53;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 50px;
+        }
+
+        nav h2 {
+            color: white;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* Welcome Section */
+        
+        .welcome {
+            min-height: 430px;
+
+            background-image:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.55),
+                    rgba(0, 0, 0, 0.55)
+                ),
+                url("college.jpg");
+
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            color: white;
+
+            padding: 40px 20px;
+        }
+
+        .welcome h1 {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .welcome p {
+            font-size: 19px;
+            margin-bottom: 25px;
+        }
+
+        .dashboard-button {
+            display: inline-block;
+
+            background: white;
+            color: #243b53;
+
+            padding: 13px 25px;
+
+            border-radius: 6px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+        }
+
+        .dashboard-button:hover {
+            background: #e8edf2;
+        }
+        .logout-button
+            :hover {
+                background:
+                #e8edf2;
+        }
+
+        /* Information Section */
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+
+            margin: 40px auto;
+        }
+
+        .container h2 {
+            text-align: center;
+
+            color: #243b53;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* Cards */
+
+        .cards {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+
+            padding: 25px;
+
+            text-align: center;
+
+            border-radius: 10px;
+
+            box-shadow:
+                0 4px 12px
+                rgba(0, 0, 0, 0.1);
+        }
+
+        .card h3 {
+            color: #243b53;
+
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #666;
+
+            line-height: 1.5;
+        }
+
+
+        /* Footer */
+
+        footer {
+            background: #243b53;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 20px;
+
+            margin-top: 40px;
+        }
+
+
+        /* Mobile */
+
+        @media (max-width: 800px) {
+
+            nav {
+                padding: 0 20px;
+            }
+
+            nav a {
+                margin-left: 10px;
+            }
+
+            .welcome h1 {
+                font-size: 32px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- Navigation Bar -->
+
+    <nav>
+
+        <h2>Student Portal</h2>
+
+        <div>
+
+            <a href="home.html">Home</a>
+
+            <a href="dashboard.html">Dashboard</a>
+
+            <a href="#" onclick="logout()">Logout</a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- Welcome Section -->
+
+    <section class="welcome">
+
+        <h1>
+            Welcome to Student Study Portal
+        </h1>
+
+        <p>
+            Your academic information, learning resources
+            and semester activities in one place.
+        </p>
+
+        <a
+            href="dashboard.html"
+            class="dashboard-button"
+        >
+            Go to Dashboard
+        </a>
+
+    </section>
+
+
+
+    <!-- Information Section -->
+
+    <div class="container">
+
+        <h2>
+            What You Can Access
+        </h2>
+
+
+        <div class="cards">
+<a href="assignments.html" style="text-decoration:none; color:inherit;">
+    <div class="card">
+        📝 Assignments
+        <p>Check your assignments, subjects and submission dates.</p>
+    </div>
+</a>
+<a href="notes.html" style="text-decoration:none; color:inherit;">
+
+    <div class="card">
+        
+        📚 Notes
+        
+        <p>
+            Access your study notes and learning materials.
+        </p>
+        
+    </div>
+    
+</a>
+
+
+<a href="attendance.html" style="text-decoration:none; color:inherit;">
+    <div class="card">
+        <div class="icon">📅</div>
+        
+        <h3>Attendance</h3>
+        
+        <p>
+            Check your daily and overall attendance.
+        </p>
+    </div>
+</a>
+
+
+<a href="projects.html" style="text-decoration:none; color:inherit;">
+
+    <div class="card">
+        
+        <div class="icon">💻</div>
+        
+        <h3>Projects</h3>
+        
+        <p>
+            Store your presentations and important project files.
+        </p>
+        
+    </div>
+    
+</a>
+
+
+<a href="timetable.html" style="text-decoration:none; color:inherit;">
+
+    <div class="card">
+        
+        <div class="icon">🕐</div>
+        
+        <h3>Timetable</h3>
+        
+        <p>
+            Set your exams, daily schedule and important work.
+        </p>
+        
+    </div>
+    
+</a>
+
+
+<a href="performance.html" style="text-decoration:none; color:inherit;">
+
+    <div class="card">
+        
+        <div class="icon">📊</div>
+        
+        <h3>Performance</h3>
+        
+        <p>
+            View your overall academic and activity performance.
+        </p>
+        
+    </div>
+    
+</a>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        © 2026 Student Study Portal
+
+    </footer>
+    <script>
+
+const student = JSON.parse(localStorage.getItem("studentData"));
+const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
+if (!student || !isLoggedIn) {
+    window.location.href = "login.html";
+}
+
+function logout() {
+    localStorage.removeItem("isLoggedIn");
+    window.location.href = "login.html";
+}
+
+</script>
+
+
+</body>
+
+</html>

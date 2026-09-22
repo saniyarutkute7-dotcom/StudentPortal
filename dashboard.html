@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="manifest.json">
+
+    <title>Student Portal - Dashboard</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+        }
+
+
+        /* Navigation Bar */
+
+        nav {
+            background-color: #1e3a8a;
+            padding: 18px 30px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+
+        .nav-links a:hover {
+            color: #bfdbfe;
+        }
+
+
+        /* Header */
+
+        .dashboard-header {
+            text-align: center;
+            padding: 45px 20px 30px;
+        }
+
+
+        .dashboard-header h1 {
+            color: #1e3a8a;
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+
+        .dashboard-header p {
+            color: #666;
+            font-size: 17px;
+        }
+
+
+        /* Student Information */
+
+        .student-info {
+            width: 90%;
+            max-width: 1000px;
+
+            margin: 0 auto 35px;
+
+            background-color: white;
+
+            padding: 30px;
+
+            border-radius: 15px;
+
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+
+        .student-info h2 {
+            color: #1e3a8a;
+            margin-bottom: 20px;
+        }
+
+
+        .info-container {
+            display: flex;
+            justify-content: space-between;
+
+            gap: 20px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .info {
+            flex: 1;
+
+            min-width: 200px;
+
+            background-color: #eff6ff;
+
+            padding: 18px;
+
+            border-radius: 10px;
+        }
+
+
+        .info h3 {
+            color: #1e3a8a;
+
+            font-size: 15px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .info p {
+            font-size: 16px;
+
+            font-weight: bold;
+        }
+
+
+        /* Academic Section */
+
+        .dashboard-section {
+            width: 90%;
+            max-width: 1000px;
+
+            margin: auto;
+
+            padding-bottom: 50px;
+        }
+
+
+        .dashboard-section h2 {
+            text-align: center;
+
+            color: #1e3a8a;
+
+            margin-bottom: 30px;
+
+            font-size: 30px;
+        }
+
+
+        .card-container {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 25px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .card {
+            width: 210px;
+
+            background-color: white;
+
+            padding: 28px 20px;
+
+            text-align: center;
+
+            border-radius: 15px;
+
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+
+            transition: 0.3s;
+        }
+
+
+        .card:hover {
+            transform: translateY(-5px);
+
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+
+        .card .icon {
+            font-size: 40px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .card h3 {
+            color: #1e3a8a;
+
+            margin-bottom: 10px;
+        }
+
+
+        .card p {
+            color: #666;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+
+            margin-bottom: 18px;
+        }
+
+
+        .card a {
+            display: inline-block;
+
+            background-color: #1e3a8a;
+
+            color: white;
+
+            text-decoration: none;
+
+            padding: 9px 18px;
+
+            border-radius: 6px;
+
+            font-size: 14px;
+        }
+
+
+        .card a:hover {
+            background-color: #172554;
+        }
+
+
+        /* Footer */
+
+        footer {
+            background-color: #1e3a8a;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 20px;
+        }
+
+
+        /* Mobile */
+
+        @media (max-width: 700px) {
+
+            nav {
+                flex-direction: column;
+
+                gap: 15px;
+            }
+
+
+            .nav-links {
+                gap: 12px;
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+            }
+
+
+            .dashboard-header h1 {
+                font-size: 30px;
+            }
+
+
+            .student-info {
+                width: 92%;
+            }
+
+
+            .info {
+                width: 100%;
+            }
+
+
+            .card {
+                width: 90%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- Navigation Bar -->
+
+    <nav>
+
+        <div class="logo">
+            Student Portal
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="home.html">
+                Home
+            </a>
+
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+
+            <a href="profile.html">
+                Profile
+            </a>
+
+
+            <a href="#" onclick="logout()">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- Dashboard Header -->
+
+    <section class="dashboard-header">
+
+        <h1>
+            Student Dashboard
+        </h1>
+
+        <p>
+            Welcome to your academic dashboard
+        </p>
+
+    </section>
+
+
+    <!-- Student Information -->
+
+    <section class="student-info">
+
+        <h2>
+            Student Information
+        </h2>
+
+
+        <div class="info-container">
+
+
+            <div class="info">
+
+                <h3>
+                    Student Name
+                </h3>
+
+                <p id="studentName">
+                    Loading...
+                </p>
+
+            </div>
+
+
+            <div class="info">
+
+                <h3>
+                    Course
+                </h3>
+
+                <p id="studentCourse">
+                    Loading...
+                </p>
+
+            </div>
+
+
+            <div class="info">
+
+                <h3>
+                    Semester
+                </h3>
+
+                <p id="studentSemester">
+                    Loading...
+                </p>
+
+            </div>
+
+
+            <div class="info">
+
+                <h3>
+                    Academic Year
+                </h3>
+
+                <p id="studentAcademicYear">
+                    Loading...
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- Academic Details -->
+
+    <section class="dashboard-section">
+
+        <h2>
+            Academic Details
+        </h2>
+
+
+        <div class="card-container">
+
+
+            <!-- Subjects -->
+
+            <div class="card">
+
+                <div class="icon">
+                    📚
+                </div>
+
+                <h3>
+                    Subjects
+                </h3>
+
+                <p>
+                    View your semester subjects and subject details.
+                </p>
+
+                <a href="subject.html">
+                    View
+                </a>
+
+            </div>
+
+
+            <!-- Results -->
+
+            <div class="card">
+
+                <div class="icon">
+                    📊
+                </div>
+
+                <h3>
+                    Results
+                </h3>
+
+                <p>
+                    View your marks and semester results.
+                </p>
+
+                <a href="result.html">
+                    View
+                </a>
+
+            </div>
+
+
+            <!-- Attendance -->
+
+            <div class="card">
+
+                <div class="icon">
+                    📝
+                </div>
+
+                <h3>
+                    Attendance
+                </h3>
+
+                <p>
+                    Check your attendance details.
+                </p>
+
+                <a href="attendance.html">
+                    View
+                </a>
+
+            </div>
+
+
+            <!-- Profile -->
+
+            <div class="card">
+
+                <div class="icon">
+                    👤
+                </div>
+
+                <h3>
+                    Profile
+                </h3>
+
+                <p>
+                    View your personal student information.
+                </p>
+
+                <a href="profile.html">
+                    View
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <p>
+            © 2026 Student Portal | BCA
+        </p>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+
+    <script>
+
+        /* ================================
+           LOGIN PROTECTION
+        ================================= */
+
+        const student =
+            JSON.parse(localStorage.getItem("studentData"));
+
+        const isLoggedIn =
+            localStorage.getItem("isLoggedIn") === "true";
+
+
+        /* If user is NOT logged in,
+           go to login page */
+
+        if (!student || !isLoggedIn) {
+
+            window.location.href = "login.html";
+
+        }
+
+
+        /* ================================
+           DISPLAY STUDENT INFORMATION
+        ================================= */
+
+        if (student) {
+
+            document.getElementById("studentName").textContent =
+                student.fullName || "Not Available";
+
+
+            document.getElementById("studentCourse").textContent =
+                student.course || "Not Available";
+
+
+            document.getElementById("studentSemester").textContent =
+                student.semester || "Not Available";
+
+
+            document.getElementById("studentAcademicYear").textContent =
+                student.academicYear || "Not Available";
+
+        }
+
+
+        /* ================================
+           LOGOUT
+        ================================= */
+
+        function logout() {
+
+            /* Only remove login status.
+               Student information remains saved. */
+
+            localStorage.removeItem("isLoggedIn");
+
+
+            /* Go back to login page */
+
+            window.location.href = "login.html";
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
