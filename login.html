@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1e3a8a">
+
+    <title>Student Portal - Login</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 650px;
+            background-color: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .title h1 {
+            color: #1e3a8a;
+            margin-bottom: 8px;
+            font-size: 32px;
+        }
+
+        .title p {
+            color: #666;
+            font-size: 15px;
+        }
+
+        .section-title {
+            color: #1e3a8a;
+            font-size: 20px;
+            margin: 25px 0 15px;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 8px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .form-group {
+            flex: 1;
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            color: #333;
+            font-size: 14px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #1e3a8a;
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 13px;
+            margin-top: 10px;
+            background-color: #1e3a8a;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .login-button:hover {
+            background-color: #172554;
+        }
+
+        .note {
+            text-align: center;
+            color: #777;
+            font-size: 13px;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 600px) {
+
+            .login-container {
+                padding: 25px 20px;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .title h1 {
+                font-size: 27px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <div class="title">
+            <h1>Student Portal</h1>
+            <p>Enter your details to continue</p>
+        </div>
+
+        <form id="loginForm">
+
+            <!-- Personal Information -->
+            <h2 class="section-title">Personal Information</h2>
+
+            <div class="form-group">
+                <label for="fullName">Full Name *</label>
+                <input type="text" id="fullName" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label for="studentId">Student ID / USN *</label>
+                    <input type="text" id="studentId" placeholder="Enter Student ID / USN" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" placeholder="Enter phone number" required>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" placeholder="Enter email address" required>
+            </div>
+
+
+            <!-- Academic Information -->
+            <h2 class="section-title">Academic Information</h2>
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label for="course">Course *</label>
+
+                    <select id="course" required>
+                        <option value="">Select Course</option>
+                        <option value="BCA">BCA</option>
+                        <option value="BBA">BBA</option>
+                        <option value="BCOM">B.Com</option>
+                        <option value="BA">BA</option>
+                        <option value="BSc">B.Sc</option>
+                        <option value="Other">Other</option>
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="year">Year *</label>
+
+                    <select id="year" required>
+                        <option value="">Select Year</option>
+                        <option value="1st Year">1st Year</option>
+                        <option value="2nd Year">2nd Year</option>
+                        <option value="3rd Year">3rd Year</option>
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label for="semester">Semester *</label>
+
+                    <select id="semester" required>
+                        <option value="">Select Semester</option>
+                        <option value="1st Semester">1st Semester</option>
+                        <option value="2nd Semester">2nd Semester</option>
+                        <option value="3rd Semester">3rd Semester</option>
+                        <option value="4th Semester">4th Semester</option>
+                        <option value="5th Semester">5th Semester</option>
+                        <option value="6th Semester">6th Semester</option>
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="academicYear">Academic Year *</label>
+                    <input type="text"
+                           id="academicYear"
+                           placeholder="Example: 2026 - 2027"
+                           required>
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+                <label for="college">College Name *</label>
+
+                <input type="text"
+                       id="college"
+                       placeholder="Enter your college name"
+                       required>
+            </div>
+
+
+            <!-- Login Information -->
+            <h2 class="section-title">Login Information</h2>
+
+            <div class="form-group">
+                <label for="username">Username *</label>
+
+                <input type="text"
+                       id="username"
+                       placeholder="Create your username"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password *</label>
+
+                <input type="password"
+                       id="password"
+                       placeholder="Create your password"
+                       required>
+            </div>
+
+
+            <button type="submit" class="login-button">
+                LOGIN
+            </button>
+
+            <p class="note">
+                * Please fill all required fields before logging in.
+            </p>
+
+        </form>
+
+    </div>
+
+
+    <script>
+
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            // Get all student details
+            const student = {
+
+                fullName: document.getElementById("fullName").value,
+                studentId: document.getElementById("studentId").value,
+                phone: document.getElementById("phone").value,
+                email: document.getElementById("email").value,
+
+                course: document.getElementById("course").value,
+                year: document.getElementById("year").value,
+                semester: document.getElementById("semester").value,
+                academicYear: document.getElementById("academicYear").value,
+                college: document.getElementById("college").value,
+
+                username: document.getElementById("username").value,
+                password: document.getElementById("password").value
+            };
+
+
+            // Save student details
+            localStorage.setItem(
+                "studentData",
+                JSON.stringify(student)
+            );
+
+
+            // Mark student as logged in
+            localStorage.setItem("isLoggedIn", "true");
+
+
+            // Open Home Page
+            window.location.href = "home.html";
+
+        });
+        
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("sw.js");
+}
+
+    </script>
+
+</body>
+</html>
